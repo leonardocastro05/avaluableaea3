@@ -1,6 +1,4 @@
-// ============================================
 // SERVIDOR ISOMÒRFIC - PORTFOLIO LEONARDO
-// ============================================
 
 import express from 'express';
 import path from 'path';
@@ -14,31 +12,28 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ============================================
 // MIDDLEWARES DE SEGURETAT I OPTIMITZACIÓ
-// ============================================
 app.use(helmet({
   contentSecurityPolicy: false, // Desactivat per permetre Font Awesome CDN
 }));
 app.use(compression()); // Compressió GZIP
 
-// ============================================
 // CONFIGURACIÓ DEL MOTOR DE PLANTILLES
-// ============================================
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// ============================================
+
 // ARXIUS ESTÀTICS
-// ============================================
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/imatges', express.static(path.join(__dirname, 'imatges')));
 app.use('/logo', express.static(path.join(__dirname, 'logo')));
 app.use('/so', express.static(path.join(__dirname, 'so')));
 
-// ============================================
+
 // DADES DEL PORTFOLIO (SIMULANT UNA API/BD)
-// ============================================
+
 const portfolioData = {
   nom: 'Leonardo de Castro Ferreira',
   titol: 'Desenvolupador Web - DAW',
