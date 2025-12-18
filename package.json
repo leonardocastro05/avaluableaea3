@@ -1,0 +1,26 @@
+{
+  "name": "portfolio-isomorfic-leonardo",
+  "version": "1.0.0",
+  "description": "Portfolio isomòrfic de Leonardo de Castro Ferreira",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["portfolio", "isomorphic", "express"],
+  "author": "Leonardo de Castro Ferreira",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
