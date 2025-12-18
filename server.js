@@ -32,7 +32,7 @@ app.use('/logo', express.static(path.join(__dirname, 'logo')));
 app.use('/so', express.static(path.join(__dirname, 'so')));
 
 
-// DADES DEL PORTFOLIO (SIMULANT UNA API/BD)
+// DADES DEL PORTFOLIO
 
 const portfolioData = {
   nom: 'Leonardo de Castro Ferreira',
@@ -41,7 +41,7 @@ const portfolioData = {
     al Institut Baix Camp, estic aprenent a crear noves webs combinant l'aprenentatge teòric amb els 
     projectes pràctics, durant el meu portafoli mostraré uns 6 projectes que he fet durant la meva 
     carrera com desenvolupador web, on 4 són projectes que he desarrollat a l'empresa, tan al mitjà 
-    com en el superior i els 2 DevChallenge que són projectes fets a classe`,
+    com en el superior i els 2 DevChallenge que són projectes fets a classe.`,
   
   targetes: [
     {
