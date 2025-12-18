@@ -1,0 +1,921 @@
+/* ============================================
+   TEMA BLACK & GOLD - PORTFOLIO LEONARDO
+   ============================================ */
+
+/* ============================================
+   CONFIGURACIÓ BÀSICA
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   CAPÇALERA MINIMALISTA FIXA
+   ============================================ */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    z-index: 900;
+    border-bottom: 2px solid #d4af37;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.logo img {
+    height: 70px;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+/* ============================================
+   BOTÓ HAMBURGUESA
+   ============================================ */
+.hamburguesa {
+    width: 35px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburguesa span {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #d4af37, #f4d03f);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.hamburguesa:hover span {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+/* Animació hamburguesa → X */
+.hamburguesa.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburguesa.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburguesa.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(9px, -9px);
+}
+
+/* ============================================
+   MENÚ FULLSCREEN (CORTINA)
+   ============================================ */
+.menu-superposa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.menu-superposa.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-superposa nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+.menu-superposa nav ul li {
+    margin: 30px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+
+.menu-superposa.active nav ul li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecte progressiu d'entrada */
+.menu-superposa.active nav ul li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.menu-superposa.active nav ul li:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.menu-superposa.active nav ul li:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.menu-superposa.active nav ul li:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.menu-superposa.active nav ul li:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+.menu-superposa nav ul li a {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.menu-superposa nav ul li a:hover {
+    color: #f4d03f;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+    transform: scale(1.1);
+    display: inline-block;
+}
+
+/* ============================================
+   INTRO ESTIL NETFLIX
+   ============================================ */
+#introduccio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.logo-introduccio {
+    height: 300px;
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
+}
+
+@keyframes netflixGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        filter: drop-shadow(0 0 0px rgba(212, 175, 55, 0));
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 50px rgba(212, 175, 55, 1));
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
+    }
+}
+
+#introduccio.hidden {
+    display: none;
+}
+
+/* Botó d'inici */
+#boto-inici {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    color: #000000;
+    border: 2px solid #d4af37;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2001;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+#boto-inici:hover {
+    background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7);
+    transform: translateX(-50%) translateY(-3px);
+}
+
+/* ============================================
+   CONTINGUT PRINCIPAL
+   ============================================ */
+main {
+    padding-top: 100px;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 40px;
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    margin: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+h1,
+h2 {
+    color: #d4af37;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+h1 i,
+h2 i {
+    margin-right: 15px;
+    color: #f4d03f;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+.icona-cita {
+    color: #d4af37;
+    font-size: 0.8em;
+    opacity: 0.6;
+    margin: 0 8px;
+}
+
+/* ============================================
+   SOBRE MI - TARGETES I BADGES
+   ============================================ */
+.text-introduccio {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.targetes-sobre-mi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.targeta-sobre-mi {
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.targeta-sobre-mi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.targeta-sobre-mi:hover::before {
+    left: 100%;
+}
+
+.targeta-sobre-mi:hover {
+    border-color: #d4af37;
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+}
+
+.icona-targeta {
+    font-size: 3rem;
+    color: #d4af37;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.targeta-sobre-mi:hover .icona-targeta {
+    color: #f4d03f;
+    transform: scale(1.2) rotateY(360deg);
+}
+
+.targeta-sobre-mi h3 {
+    color: #d4af37;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border: none;
+    padding: 0;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+.targeta-sobre-mi p {
+    font-size: 1rem;
+    color: #c0c0c0;
+    line-height: 1.6;
+}
+
+/* Stack tecnològic */
+.pila-tecnologica {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.pila-tecnologica h3 {
+    color: #d4af37;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    border: none;
+    padding: 0;
+}
+
+.pila-tecnologica h3 i {
+    margin-right: 10px;
+    color: #f4d03f;
+}
+
+.insignies-tecnologiques {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.insignia-tecnologica {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    color: #d4af37;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.insignia-tecnologica i {
+    font-size: 1.2rem;
+}
+
+.insignia-tecnologica:hover {
+    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    color: #000000;
+    border-color: #d4af37;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+}
+
+/* ============================================
+   HABILITATS
+   ============================================ */
+#habilitats ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+#habilitats li {
+    position: relative;
+    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 30px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#habilitats li:hover {
+    border-color: #d4af37;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+}
+
+.habilitat {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.habilitat img {
+    max-width: 120px;
+    transition: opacity 0.4s;
+    filter: grayscale(0.3);
+}
+
+.habilitat p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.4s;
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.habilitat:hover img {
+    opacity: 0;
+}
+
+.habilitat:hover p {
+    opacity: 1;
+}
+
+/* ============================================
+   PROJECTES
+   ============================================ */
+#projectes ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px 0;
+}
+
+#projectes li {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    text-align: center;
+    padding: 0;
+    border-radius: 15px;
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    min-height: 350px;
+}
+
+#projectes li a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #d4af37;
+}
+
+#projectes li img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    opacity: 1;
+    transition: all 0.4s ease;
+    display: block;
+}
+
+#projectes li p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7));
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+#projectes li:hover {
+    border-color: #d4af37;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6),
+        0 0 60px rgba(212, 175, 55, 0.3);
+    transform: translateY(-10px) scale(1.02);
+}
+
+#projectes li:hover img {
+    filter: brightness(1.2);
+}
+
+#projectes li:hover p {
+    background: linear-gradient(to top, rgba(212, 175, 55, 0.9), rgba(212, 175, 55, 0.6));
+    color: #000000;
+    font-size: 1.4rem;
+}
+
+/* ============================================
+   FILTRE DE PROJECTES
+   ============================================ */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    background-color: white;
+    color: black;
+    border: 2px solid #007BFF;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.filter-btn.active {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* ============================================
+   FILTRE DE PROJECTES
+   ============================================ */
+.botons-filtre {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.boto-filtre {
+    padding: 12px 30px;
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    color: #d4af37;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.boto-filtre:hover {
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    color: #000000;
+    border-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+}
+
+.boto-filtre.active {
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    color: #000000;
+    border-color: #d4af37;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* ============================================
+   PROJECTES - RESPONSIVE
+   ============================================ */
+@media (max-width: 1200px) {
+    #projectes ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #projectes ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Amaga projectes filtrats */
+.element-projecte.hidden {
+    display: none;
+}
+
+/* ============================================
+   CERTIFICATS
+   ============================================ */
+#certificats ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+#certificats li {
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
+    border-left: 4px solid #d4af37;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+#certificats li i {
+    margin-right: 15px;
+    color: #d4af37;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+}
+
+
+
+/* ============================================
+   FORMULARI DE CONTACTE
+   ============================================ */
+.introduccio-contacte {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #d4af37;
+}
+
+.introduccio-contacte i {
+    margin-right: 10px;
+    color: #f4d03f;
+}
+
+.formulari-contacte {
+    max-width: 800px;
+}
+
+.grup-formulari {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.grup-formulari label {
+    display: block;
+    margin-bottom: 8px;
+    color: #d4af37;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.grup-formulari label i {
+    margin-right: 8px;
+    color: #f4d03f;
+}
+
+.grup-formulari input,
+.grup-formulari textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.grup-formulari input:focus,
+.grup-formulari textarea:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.grup-formulari textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Estats de validació */
+.grup-formulari input.error,
+.grup-formulari textarea.error {
+    border-color: #ff4444;
+    animation: shake 0.3s;
+}
+
+.grup-formulari input.success,
+.grup-formulari textarea.success {
+    border-color: #4CAF50;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+.error-message {
+    display: block;
+    color: #ff4444;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botó d'enviar */
+.boto-enviar {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.boto-enviar i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.boto-enviar:hover {
+    background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+    transform: translateY(-2px);
+}
+
+.boto-enviar:hover i {
+    transform: translateX(5px);
+}
+
+.boto-enviar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.boto-enviar.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    to {
+        left: 100%;
+    }
+}
+
+/* Notificacions */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: -400px;
+    background: rgba(26, 26, 26, 0.95);
+    padding: 20px 30px;
+    border-radius: 8px;
+    border-left: 4px solid #d4af37;
+    color: #f0f0f0;
+    font-size: 1rem;
+    z-index: 9999;
+    transition: right 0.3s ease;
+    max-width: 350px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.notification.show {
+    right: 30px;
+}
+
+.notification.success {
+    border-left-color: #4CAF50;
+}
+
+.notification.error {
+    border-left-color: #ff4444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .formulari-contacte {
+        max-width: 100%;
+    }
+
+    .boto-enviar {
+        width: 100%;
+    }
+
+    .notification {
+        max-width: calc(100% - 40px);
+        right: -100%;
+    }
+
+    .notification.show {
+        right: 20px;
+    }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background: linear-gradient(90deg, #000000 0%, #0a0a0a 100%);
+    color: #d4af37;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 -4px 15px rgba(212, 175, 55, 0.3);
+    border-top: 2px solid #d4af37;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+footer a i {
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+footer a:hover {
+    color: #f4d03f;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+footer a:hover i {
+    transform: scale(1.2);
+}
